@@ -84,6 +84,7 @@ public class Entropia {
        this.probabilidades = probabilidades;
         concurrentSort(this.probabilidades,this.simbolosUnicas);
         Collections.sort(this.probabilidades,Collections.reverseOrder());
+        Collections.sort(this.frecuencias,Collections.reverseOrder());
         Collections.reverse(this.simbolosUnicas);
     }
 

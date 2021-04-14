@@ -1,14 +1,20 @@
 package org.example;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        String texto = "MALAYALAM MADAM";
+    public static void main(String[] args) throws FileNotFoundException {
+        //String texto = "MALAYALAM MADAM";
+
+        String texto = new Scanner(new File("el_quijote.txt")).useDelimiter("\\Z").next();
+        //System.out.println(texto);
+
 
         Entropia entropia = new Entropia(texto);
 
-        System.out.println("CLASE ENTROPIA");
+        System.out.println("--------------INFORMACIÓN-----------");
         System.out.println("Simbolos unicos:");
         System.out.println(entropia.getSimbolosUnicas());
         System.out.println("Probabilidades:");
@@ -16,10 +22,22 @@ public class Main {
         System.out.println("Entropia:");
         System.out.println(entropia.calcularEntropia());
 
+       ShannonFano shannonFano = new ShannonFano(entropia.getProbabilidades());
+        System.out.println(shannonFano.getCodigos());
+
+        ArrayList<Character> simbolosUnicas =entropia.getSimbolosUnicas();
+        ArrayList<Integer> frecuencias = entropia.getFrecuencias();
+        ArrayList<Double> probabilidades = entropia.getProbabilidades();
+        ArrayList<String> codigos = shannonFano.getCodigos();
+
+        for (int i = 0; i < simbolosUnicas.size(); i++) {
+            System.out.println("Caracter:"+simbolosUnicas.get(i)+" cantidad:"+frecuencias.get(i) +" Probabilidad:"+probabilidades.get(i)
+            + " Código:"+codigos.get(i));
+        }
 
 
 
-
+        //Prueba
         /*
         ArrayList<Double> probabilidadesPrueba = new ArrayList<Double>();
         probabilidadesPrueba.add(0.05);
@@ -28,22 +46,6 @@ public class Main {
         probabilidadesPrueba.add(0.28);
         probabilidadesPrueba.add(0.30);
         System.out.println(probabilidadesPrueba);
-         */
-
-        ShannonFano shannonFano = new ShannonFano(entropia.getProbabilidades());
-        System.out.println(shannonFano.getCodigos());
-
-        /*
-        ArrayList<Character> a1 = getSimbolosUnicos(prueba);
-        ArrayList<Integer> a2 = getFrecuencias(prueba, a1);
-        ArrayList<Double> a3 = getProbabilidad(a2, prueba.length());
-        double contador = 0;
-
-        for (int i = 0; i < a1.size(); i++) {
-            System.out.println("Caracter:"+a1.get(i)+" cantidad:"+a2.get(i) +" Prob:"+a3.get(i));
-            contador =contador +a3.get(i);
-        }
-
          */
 
         /*
