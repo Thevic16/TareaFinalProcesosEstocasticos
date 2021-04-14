@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
 public class Entropia {
 
     ArrayList<Character> simbolosUnicas;
@@ -78,6 +82,9 @@ public class Entropia {
         }
 
        this.probabilidades = probabilidades;
+        concurrentSort(this.probabilidades,this.simbolosUnicas);
+        Collections.sort(this.probabilidades,Collections.reverseOrder());
+        Collections.reverse(this.simbolosUnicas);
     }
 
     // Function to calculate the
@@ -114,5 +121,47 @@ public class Entropia {
 
     public void setProbabilidades(ArrayList<Double> probabilidades) {
         this.probabilidades = probabilidades;
+    }
+
+    public static <T extends Comparable<T>> void concurrentSort( final List<T> key, List<?>... lists){
+        // Do validation
+        if(key == null || lists == null)
+            throw new NullPointerException("key cannot be null.");
+
+        for(List<?> list : lists)
+            if(list.size() != key.size())
+                throw new IllegalArgumentException("all lists must be the same size");
+
+        // Lists are size 0 or 1, nothing to sort
+        if(key.size() < 2)
+            return;
+
+        // Create a List of indices
+        List<Integer> indices = new ArrayList<Integer>();
+        for(int i = 0; i < key.size(); i++)
+            indices.add(i);
+
+        // Sort the indices list based on the key
+        Collections.sort(indices, new Comparator<Integer>(){
+            @Override public int compare(Integer i, Integer j) {
+                return key.get(i).compareTo(key.get(j));
+            }
+        });
+
+        Map<Integer, Integer> swapMap = new HashMap<Integer, Integer>(indices.size());
+
+        // create a mapping that allows sorting of the List by N swaps.
+        for(int i = 0; i < indices.size(); i++){
+            int k = indices.get(i);
+            while(swapMap.containsKey(k))
+                k = swapMap.get(k);
+
+            swapMap.put(i, k);
+        }
+
+        // for each list, swap elements to sort according to key list
+        for(Map.Entry<Integer, Integer> e : swapMap.entrySet())
+            for(List<?> list : lists)
+                Collections.swap(list, e.getKey(), e.getValue());
     }
 }

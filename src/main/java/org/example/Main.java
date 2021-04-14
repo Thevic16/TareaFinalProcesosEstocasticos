@@ -8,7 +8,7 @@ public class Main {
 
         Entropia entropia = new Entropia(texto);
 
-
+        System.out.println("CLASE ENTROPIA");
         System.out.println("Simbolos unicos:");
         System.out.println(entropia.getSimbolosUnicas());
         System.out.println("Probabilidades:");
@@ -31,8 +31,6 @@ public class Main {
          */
 
         ShannonFano shannonFano = new ShannonFano(entropia.getProbabilidades());
-
-        System.out.println(shannonFano.getProbabilidades());
         System.out.println(shannonFano.getCodigos());
 
         /*
