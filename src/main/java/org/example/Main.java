@@ -4,29 +4,35 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        String prueba = "MALAYALAM MADAM";
+        String texto = "MALAYALAM MADAM";
+
+        Entropia entropia = new Entropia(texto);
+
+
+        System.out.println("Simbolos unicos:");
+        System.out.println(entropia.getSimbolosUnicas());
+        System.out.println("Probabilidades:");
+        System.out.println(entropia.getProbabilidades());
+        System.out.println("Entropia:");
+        System.out.println(entropia.calcularEntropia());
+
+
+
+
 
         /*
-        ArrayList<Character> simbolosUnicas = Entropia.getSimbolosUnicos(prueba);
-        ArrayList<Integer> frecuencias = Entropia.getFrecuencias(prueba, simbolosUnicas);
-        ArrayList<Double> probabilidades = Entropia.getProbabilidad(frecuencias, prueba.length());
-
-        System.out.println(probabilidades);
-        System.out.println(Entropia.calcularEntropia(probabilidades));
-         */
-
         ArrayList<Double> probabilidadesPrueba = new ArrayList<Double>();
-
         probabilidadesPrueba.add(0.05);
         probabilidadesPrueba.add(0.15);
         probabilidadesPrueba.add(0.22);
         probabilidadesPrueba.add(0.28);
         probabilidadesPrueba.add(0.30);
-
         System.out.println(probabilidadesPrueba);
+         */
 
-        ShannonFano shannonFano = new ShannonFano(probabilidadesPrueba);
+        ShannonFano shannonFano = new ShannonFano(entropia.getProbabilidades());
 
+        System.out.println(shannonFano.getProbabilidades());
         System.out.println(shannonFano.getCodigos());
 
         /*

@@ -16,8 +16,7 @@ public class ShannonFano {
 
 
     public ShannonFano(ArrayList<Double> probabilidades) {
-        Collections.sort(probabilidades);
-        Collections.reverse(probabilidades);
+        Collections.sort(probabilidades,Collections.reverseOrder());
         this.probabilidades = probabilidades;
         this.codigos = new ArrayList<String>(Collections.nCopies(probabilidades.size(), ""));;
         this.ultimaDiferencia = 2000000000;

@@ -10,13 +10,13 @@ public class Entropia {
     ArrayList<Integer> frecuencias;
     ArrayList<Double> probabilidades;
 
-    public Entropia(ArrayList<Character> simbolosUnicas, ArrayList<Integer> frecuencias, ArrayList<Double> probabilidades) {
-        this.simbolosUnicas = simbolosUnicas;
-        this.frecuencias = frecuencias;
-        this.probabilidades = probabilidades;
+    public Entropia(String texto) {
+        calcularSimbolosUnicos(texto);
+        calcularFrecuencias(texto,this.simbolosUnicas);
+        calcularProbabilidad(this.frecuencias,texto.length());
     }
 
-    public static double calcularEntropia(ArrayList<Double> probabilidades ){
+    public double calcularEntropia(){
         double H = 0;
 
         for (Double probabilidad:probabilidades) {
@@ -27,7 +27,7 @@ public class Entropia {
     }
 
 
-    public static ArrayList<Character> getSimbolosUnicos(String str) {
+    public void calcularSimbolosUnicos(String str) {
         char[] chArray = str.toCharArray();
         ArrayList<Character> simbolosUnicas = new ArrayList<Character>();
         char ultimaIngresada;
@@ -46,10 +46,10 @@ public class Entropia {
                 simbolosUnicas.add(ultimaIngresada);
             }
         }
-        return simbolosUnicas;
+        this.simbolosUnicas= simbolosUnicas;
     }
 
-    public static ArrayList<Integer> getFrecuencias(String str, ArrayList<Character> simbolosUnicos) {
+    public void calcularFrecuencias(String str, ArrayList<Character> simbolosUnicos) {
         char[] chArray = str.toCharArray();
         ArrayList<Integer> frecuanciaSimbolos = new ArrayList<Integer>(Collections.nCopies(simbolosUnicos.size(), 0));
 
@@ -67,17 +67,17 @@ public class Entropia {
                 frecuanciaSimbolos.set(j, (frecuanciaSimbolos.get(j) +1));
             }
         }
-        return frecuanciaSimbolos;
+        this.frecuencias = frecuanciaSimbolos;
     }
 
-    public static ArrayList<Double> getProbabilidad(ArrayList<Integer> frecuanciaSimbolos, int logitud) {
+    public void calcularProbabilidad(ArrayList<Integer> frecuanciaSimbolos, int logitud) {
         ArrayList<Double> probabilidades = new ArrayList<Double>();
 
         for (int i = 0; i < frecuanciaSimbolos.size(); i++) {
             probabilidades.add(((double)frecuanciaSimbolos.get(i)/logitud));
         }
 
-        return probabilidades;
+       this.probabilidades = probabilidades;
     }
 
     // Function to calculate the
@@ -92,4 +92,27 @@ public class Entropia {
         return result;
     }
 
+    public ArrayList<Character> getSimbolosUnicas() {
+        return simbolosUnicas;
+    }
+
+    public void setSimbolosUnicas(ArrayList<Character> simbolosUnicas) {
+        this.simbolosUnicas = simbolosUnicas;
+    }
+
+    public ArrayList<Integer> getFrecuencias() {
+        return frecuencias;
+    }
+
+    public void setFrecuencias(ArrayList<Integer> frecuencias) {
+        this.frecuencias = frecuencias;
+    }
+
+    public ArrayList<Double> getProbabilidades() {
+        return probabilidades;
+    }
+
+    public void setProbabilidades(ArrayList<Double> probabilidades) {
+        this.probabilidades = probabilidades;
+    }
 }
