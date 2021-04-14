@@ -6,12 +6,28 @@ public class Main {
     public static void main(String[] args) {
         String prueba = "MALAYALAM MADAM";
 
+        /*
         ArrayList<Character> simbolosUnicas = Entropia.getSimbolosUnicos(prueba);
         ArrayList<Integer> frecuencias = Entropia.getFrecuencias(prueba, simbolosUnicas);
         ArrayList<Double> probabilidades = Entropia.getProbabilidad(frecuencias, prueba.length());
 
         System.out.println(probabilidades);
         System.out.println(Entropia.calcularEntropia(probabilidades));
+         */
+
+        ArrayList<Double> probabilidadesPrueba = new ArrayList<Double>();
+
+        probabilidadesPrueba.add(0.05);
+        probabilidadesPrueba.add(0.15);
+        probabilidadesPrueba.add(0.22);
+        probabilidadesPrueba.add(0.28);
+        probabilidadesPrueba.add(0.30);
+
+        System.out.println(probabilidadesPrueba);
+
+        ShannonFano shannonFano = new ShannonFano(probabilidadesPrueba);
+
+        System.out.println(shannonFano.getCodigos());
 
         /*
         ArrayList<Character> a1 = getSimbolosUnicos(prueba);

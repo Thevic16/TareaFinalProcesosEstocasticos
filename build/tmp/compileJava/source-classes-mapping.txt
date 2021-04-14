@@ -1,2 +1,6 @@
+org/example/Entropia.java
+ org.example.Entropia
+org/example/ShannonFano.java
+ org.example.ShannonFano
 org/example/Main.java
  org.example.Main
