@@ -7,7 +7,7 @@ import static java.lang.Math.abs;
 
 public class ShannonFano {
     private ArrayList<Double> probabilidades;
-    private ArrayList<Integer> codigos;
+    private ArrayList<String> codigos;
     private double ultimaDiferencia;
     private int l1;
     private int l2;
@@ -19,7 +19,7 @@ public class ShannonFano {
         Collections.sort(probabilidades);
         Collections.reverse(probabilidades);
         this.probabilidades = probabilidades;
-        this.codigos = new ArrayList<Integer>(Collections.nCopies(probabilidades.size(), 1));;
+        this.codigos = new ArrayList<String>(Collections.nCopies(probabilidades.size(), ""));;
         this.ultimaDiferencia = 2000000000;
         this.l1 =0;
         this.l2 =1;
@@ -47,13 +47,13 @@ public class ShannonFano {
 
     private void agregarCeros(int l1, int l2){
         for (int i = l1; i < l2; i++) {
-            codigos.set(i,codigos.get(i)*10);
+            codigos.set(i,codigos.get(i)+"0");
         }
     }
 
     private void agregarUnos(int l1, int l2){
         for (int i = l1; i < l2; i++) {
-            codigos.set(i,codigos.get(i)*10+1);
+            codigos.set(i,codigos.get(i)+"1");
         }
     }
 
@@ -83,10 +83,16 @@ public class ShannonFano {
             agregarCeros(l1,l2);
             calcularShannonFano(l1,l1+1,l2);
         }
+        else{
+            agregarCeros(l1,l2);
+        }
 
         if ((r-l2)>1){ //lado derecho
             agregarUnos(l2,r);
             calcularShannonFano(l2,l2+1,r);
+        }
+        else{
+            agregarUnos(l2,r);
         }
     }
 
@@ -98,11 +104,11 @@ public class ShannonFano {
         this.probabilidades = probabilidades;
     }
 
-    public ArrayList<Integer> getCodigos() {
+    public ArrayList<String> getCodigos() {
         return codigos;
     }
 
-    public void setCodigos(ArrayList<Integer> codigos) {
+    public void setCodigos(ArrayList<String> codigos) {
         this.codigos = codigos;
     }
 
