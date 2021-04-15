@@ -19,11 +19,12 @@ public class Main {
         System.out.println(entropia.getSimbolosUnicas());
         System.out.println("Probabilidades:");
         System.out.println(entropia.getProbabilidades());
+
         System.out.println("Entropia Teórica:");
         System.out.println(entropia.calcularEntropia());
 
        ShannonFano shannonFano = new ShannonFano(entropia.getProbabilidades());
-        System.out.println(shannonFano.getCodigos());
+        //System.out.println(shannonFano.getCodigos());
 
         ArrayList<Character> simbolosUnicas =entropia.getSimbolosUnicas();
         ArrayList<Integer> frecuencias = entropia.getFrecuencias();
