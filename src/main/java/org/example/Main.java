@@ -19,7 +19,7 @@ public class Main {
         System.out.println(entropia.getSimbolosUnicas());
         System.out.println("Probabilidades:");
         System.out.println(entropia.getProbabilidades());
-        System.out.println("Entropia:");
+        System.out.println("Entropia Teórica:");
         System.out.println(entropia.calcularEntropia());
 
        ShannonFano shannonFano = new ShannonFano(entropia.getProbabilidades());
@@ -35,6 +35,12 @@ public class Main {
             + " Código:"+codigos.get(i));
         }
 
+
+        double entropiaReal = 0;
+        for (String codigo:codigos) {
+            entropiaReal = entropiaReal + codigo.length();
+        }
+        System.out.println("Entropia Real: "+(entropiaReal/codigos.size()));
 
 
         //Prueba
